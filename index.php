@@ -120,18 +120,19 @@ $days_until_deadline = floor(($task_deadline_ts - $current_ts)/(24*60*60));
                             <span class="radio-button__text">Просроченные</span>
                         </label>
                     </div>
-
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input id="show-complete-tasks" class="checkbox__input visually-hidden" type="checkbox">
+                        <input id="show-complete-tasks" class="checkbox__input visually-hidden" type="checkbox" 
+						<?php if ($show_complete_tasks == 1): ?> 
+						checked
+						<?php endif; ?> >
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
-
                 <table class="tasks">
-
                     <!--показывать следующий тег <tr/>, если переменная равна единице-->
-                    <tr class="tasks__item task task--completed">
+                    <?php if ($show_complete_tasks == 1): ?>
+						<tr class="tasks__item task task--completed">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden" type="checkbox" checked>
