@@ -8,12 +8,13 @@ date_default_timezone_set('Europe/Moscow');
 $days = rand(-3, 3);
 $task_deadline_ts = strtotime("+" . $days . " day midnight"); // метка времени даты выполнения задачи
 $current_ts = strtotime('now midnight'); // текущая метка времени
-
+$current_date = date("d.m.Y", $current_ts);
 // запишите сюда дату выполнения задачи в формате дд.мм.гггг
 $date_deadline = date("d.m.Y", $task_deadline_ts);
 
 // в эту переменную запишите кол-во дней до даты задачи
-$days_until_deadline = floor($task_deadline_ts - $current_ts);
+$days_until_deadline = floor(($task_deadline_ts - $current_ts)/(24*60*60));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,21 +144,21 @@ $days_until_deadline = floor($task_deadline_ts - $current_ts);
                         <td class="task__controls">
                         </td>
                     </tr>
-					<?php endif; ?>
-					<tr class="tasks__item task">
+
+                    <tr class="tasks__item task 
+					<?php if ($days_until_deadline <= 0): 
+					echo('task--important');
+					endif;
+					?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden" type="checkbox">
                                 <span class="checkbox__text">Выполнить первое задание</span>
                             </label>
                         </td>
-
-                        <td class="task__date">
-                            <?php 
-							echo "$date_deadline";
-							?> <!--выведите здесь дату выполнения задачи-->
-                        </td>
-
+                        <td class="task__date"><!--выведите здесь дату выполнения задачи-->
+                            <?= $date_deadline; ?>
+						 </td>
                         <td class="task__controls">
                             <button class="expand-control" type="button" name="button">Выполнить первое задание</button>
 
