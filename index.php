@@ -96,21 +96,25 @@ $tasks = [
                 <h2 class="content__side-heading">Проекты</h2>
 
                 <nav class="main-navigation">
-                    <ul class="main-navigation__list">
-                        <?php
-                        foreach ($categories as $cat) {
-                            if ($cat == $categories[0]) {
-                                print ('<li class="main-navigation__list-item main-navigation__list-item--active">'.
-                                '<a class="main-navigation__list-item-link" href="#">'.$cat.'</a>'.'</li>');   
-                            }
-                            else {
-                            print ('<li class="main-navigation__list-item">'.
-                            '<a class="main-navigation__list-item-link" href="#">'.$cat.'</a>'.'</li>');
-                        }
+                <ul class="main-navigation__list">
+                <?php
+                foreach ($categories as $cat) {
+                    if ($cat == $categories[0]) {
+                        print ('<li class="main-navigation__list-item main-navigation__list-item--active">'.
+                        '<a class="main-navigation__list-item-link" href="#">'.$cat.'</a>'.
+                        '<span class="main-navigation__list-item-count">'.'3'.'</span>'
+                        .'</li>');   
                     }
-                        ?> 
-                    </ul>
-                </nav>
+                    else {
+                    print ('<li class="main-navigation__list-item">'.
+                    '<a class="main-navigation__list-item-link" href="#">'.$cat.'</a>'.
+                    '<span class="main-navigation__list-item-count">'.'3'.'</span>'
+                    .'</li>');
+                }
+            }
+                ?> 
+            </ul>
+            </nav>
 
                 <a class="button button--transparent button--plus content__side-button" href="#">Добавить проект</a>
             </section>
@@ -156,25 +160,36 @@ $tasks = [
                     </label>
                 </div>
                 <table class="tasks">
- 
+                <!--показывать следующий тег <tr/>, если переменная равна единице-->
                 <?php foreach ($tasks as $key => $val): ?>
-                    <tr class="tasks__item task<?php if ($val['is_done'] == true): ?> task--completed <?php endif; ?>">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden" type="checkbox" <?php if ($val['is_done'] == true): ?> checked <?php endif; ?>>
-                                <span class="checkbox__text"><?=($val['task']); ?></span>
-                            </label>
-                        </td>
-                        <td class="task__date"><?=$val['date']; ?></td>
+                <tr class="tasks__item task<?php if ($val['is_done'] == true): ?> task--completed <?php endif; ?>">
+                    <td class="task__select">
+                        <label class="checkbox task__checkbox">
+                            <input class="checkbox__input visually-hidden" type="checkbox" <?php if ($val['is_done'] == true): ?> checked <?php endif; ?>>
+                            <span class="checkbox__text"><?=($val['task']); ?></span>
+                        </label>
+                    </td>
+                    <td class="task__date"><?=$val['date']; ?></td>
 
-                        <td class="task__controls">
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                    <td class="task__controls">
+                    </td>
+                
+                <?php endforeach; ?>
+                    <td class="task__controls">
+                        <button class="expand-control" type="button" name="button">Выполнить первое задание</button>
 
+                        <ul class="expand-list hidden">
+                            <li class="expand-list__item">
+                                <a href="#">Выполнить</a>
+                            </li>
 
-
-                </table>
+                            <li class="expand-list__item">
+                                <a href="#">Удалить</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
             </main>
         </div>
     </div>
