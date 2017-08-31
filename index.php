@@ -54,6 +54,7 @@ $tasks = [
 ],
 ]
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,22 +98,13 @@ $tasks = [
 
                 <nav class="main-navigation">
                 <ul class="main-navigation__list">
-                <?php
-                foreach ($categories as $cat) {
-                    if ($cat == $categories[0]) {
-                        print ('<li class="main-navigation__list-item main-navigation__list-item--active">'.
-                        '<a class="main-navigation__list-item-link" href="#">'.$cat.'</a>'.
-                        '<span class="main-navigation__list-item-count">'.'3'.'</span>'
-                        .'</li>');   
-                    }
-                    else {
-                    print ('<li class="main-navigation__list-item">'.
-                    '<a class="main-navigation__list-item-link" href="#">'.$cat.'</a>'.
-                    '<span class="main-navigation__list-item-count">'.'3'.'</span>'
-                    .'</li>');
-                }
-            }
-                ?> 
+                <?php foreach ($categories as $cat): ?>
+                    <li class="main-navigation__list-item main-navigation__list-item<?php if ($cat == $categories[0]): ?>--active<?php endif; ?>">
+                        <a class="main-navigation__list-item-link" href="#"><?=$cat;?></a>
+                        <span class="main-navigation__list-item-count">22</span>
+                        </li>   
+                <?php endforeach; ?>
+                
             </ul>
             </nav>
 
@@ -163,7 +155,7 @@ $tasks = [
                 <!--показывать следующий тег <tr/>, если переменная равна единице-->
                 <?php foreach ($tasks as $key => $val): ?>
                 <tr class="tasks__item task<?php if ($val['is_done'] == true): ?> task--completed <?php endif; ?>">
-                    <td class="task__select">
+                <td class="task__select">
                         <label class="checkbox task__checkbox">
                             <input class="checkbox__input visually-hidden" type="checkbox" <?php if ($val['is_done'] == true): ?> checked <?php endif; ?>>
                             <span class="checkbox__text"><?=($val['task']); ?></span>
@@ -173,7 +165,6 @@ $tasks = [
 
                     <td class="task__controls">
                     </td>
-                
                 <?php endforeach; ?>
                     <td class="task__controls">
                         <button class="expand-control" type="button" name="button">Выполнить первое задание</button>
