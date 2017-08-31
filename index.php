@@ -54,7 +54,24 @@ $tasks = [
 ],
 ]
 ?>
-
+<?php
+function calculate_tasks($tasks, $cat)
+{
+    $counter = 0;
+    if ($cat == "Все") {
+        $counter = count($tasks);
+        }
+        else {
+            $counter = null;
+        }
+    foreach ($tasks as $key => $val) {
+    if ($val['cat'] == $cat) {
+                $counter++;
+        } 
+    }
+    echo $counter;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,7 +118,7 @@ $tasks = [
                 <?php foreach ($categories as $cat): ?>
                     <li class="main-navigation__list-item main-navigation__list-item<?php if ($cat == $categories[0]): ?>--active<?php endif; ?>">
                         <a class="main-navigation__list-item-link" href="#"><?=$cat;?></a>
-                        <span class="main-navigation__list-item-count">22</span>
+                        <span class="main-navigation__list-item-count"><?=calculate_tasks($tasks, $cat);?></span>
                         </li>   
                 <?php endforeach; ?>
                 
