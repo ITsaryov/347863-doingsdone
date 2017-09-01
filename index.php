@@ -55,21 +55,19 @@ $tasks = [
 ]
 ?>
 <?php
-function calculate_tasks($tasks, $cat)
+// функция подсчёта задач в массиве
+function Count_Tasks($tasks, $cat)
 {
     $counter = 0;
     if ($cat == "Все") {
         $counter = count($tasks);
-        }
-        else {
-            $counter = null;
         }
     foreach ($tasks as $key => $val) {
     if ($val['cat'] == $cat) {
                 $counter++;
         } 
     }
-    echo $counter;
+    return $counter;
 }
 ?>
 <!DOCTYPE html>
@@ -118,7 +116,7 @@ function calculate_tasks($tasks, $cat)
                 <?php foreach ($categories as $cat): ?>
                     <li class="main-navigation__list-item main-navigation__list-item<?php if ($cat == $categories[0]): ?>--active<?php endif; ?>">
                         <a class="main-navigation__list-item-link" href="#"><?=$cat;?></a>
-                        <span class="main-navigation__list-item-count"><?=calculate_tasks($tasks, $cat);?></span>
+                        <span class="main-navigation__list-item-count"><?=Count_Tasks($tasks, $cat);?></span>
                         </li>   
                 <?php endforeach; ?>
                 
@@ -197,7 +195,7 @@ function calculate_tasks($tasks, $cat)
                         </ul>
                     </td>
                 </tr>
-            </table>
+                </table>
             </main>
         </div>
     </div>
