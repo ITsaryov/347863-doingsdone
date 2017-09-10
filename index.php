@@ -73,14 +73,4 @@ else {
 $content = renderTemplate('index', ['show_complete_tasks'=>$show_complete_tasks, 'tasks'=>$tasks]);
 $layout_content = renderTemplate('layout', ['title'=>'Дела в Порядке!', 'username'=>'Put name here', 'tasks'=>$tasks, 'categories'=>$categories, 'content'=>$content]);
 print($layout_content);
-
-
-var_dump($_GET['id']);
-
-//var_dump($task['cat']);
-//print_r(count($categories));
-
-//$cats = 'Домашние дела';
-var_dump(count($categories));
-//var_dump($tasks);
 ?>
