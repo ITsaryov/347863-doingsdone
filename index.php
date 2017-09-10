@@ -51,6 +51,25 @@ $tasks = [
    'is_done' => false
 ],
 ];
+
+if ($_GET['id'] >= count($categories) ) {
+return http_response_code(404);
+    }
+ 
+elseif (!empty($_GET['id'])) {
+    $id = $_GET['id'];
+    foreach ($categories as $key => $cats) {
+        if ($_GET['id'] == $key) {
+    $tasks = array_filter($tasks, function ($tsk) use ($cats) {
+         return ($tsk['cat'] == $cats);
+    });
+    }
+    }
+}
+else {
+    $_GET['id'] = '0';
+}
+
 $content = renderTemplate('index', ['show_complete_tasks'=>$show_complete_tasks, 'tasks'=>$tasks]);
 $layout_content = renderTemplate('layout', ['title'=>'Дела в Порядке!', 'username'=>'Put name here', 'tasks'=>$tasks, 'categories'=>$categories, 'content'=>$content]);
 print($layout_content);

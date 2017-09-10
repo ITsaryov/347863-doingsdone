@@ -41,9 +41,9 @@
 
                 <nav class="main-navigation">
                 <ul class="main-navigation__list">
-                <?php foreach ($categories as $cat): ?>
-                    <li class="main-navigation__list-item main-navigation__list-item<?php if ($cat == $categories[0]): ?>--active<?php endif; ?>">
-                        <a class="main-navigation__list-item-link" href="#"><?=$cat;?></a>
+                <?php foreach ($categories as $key => $cat): ?>
+                    <li class="main-navigation__list-item main-navigation__list-item<?php if ($_GET['id'] == $key): ?>--active<?php endif; ?>">
+                    <a class="main-navigation__list-item-link" href=?id=<?=$key;?>><?=$cat;?></a>
                         <span class="main-navigation__list-item-count"><?=Count_Tasks($tasks, $cat);?></span>
                         </li>   
                 <?php endforeach; ?>
